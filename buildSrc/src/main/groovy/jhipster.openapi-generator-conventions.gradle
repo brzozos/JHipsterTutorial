@@ -1,0 +1,27 @@
+plugins {
+    id "org.openapi.generator"
+}
+
+openApiGenerate {
+    generatorName = "spring"
+    inputSpec = "$rootDir/src/main/resources/swagger/api.yml".toString()
+    outputDir = "$buildDir/openapi".toString()
+    apiPackage = "com.brzoza.tutorial.jhipster.web.api"
+    modelPackage = "com.brzoza.tutorial.jhipster.service.api.dto"
+    apiFilesConstrainedTo = [""]
+    modelFilesConstrainedTo = [""]
+    supportingFilesConstrainedTo = ["ApiUtil.java"]
+    configOptions = [delegatePattern: "true", title: "j-hipster-tutorial", reactive: "true", useSpringBoot3: "true"]
+    validateSpec = true
+    importMappings = [Problem:"org.springframework.http.ProblemDetail"]
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir file("${project.buildDir.path}/openapi/src/main/java")
+        }
+    }
+}
+
+compileJava.dependsOn("openApiGenerate")

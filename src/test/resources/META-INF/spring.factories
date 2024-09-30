@@ -1,0 +1,2 @@
+org.springframework.test.context.ContextCustomizerFactory = com.brzoza.tutorial.\
+    jhipster.config.TestContainersSpringContextCustomizerFactory
